@@ -12,6 +12,7 @@ The layers include:
 https://arxiv.org/abs/1506.02025
 
 -- Spatial Warping Layer.
+
 This is based on STN, instead of predicting transformation matrices, this layer predict the x,y displacements.
 
 -- Separable RNN Layer.
@@ -34,11 +35,13 @@ https://arxiv.org/abs/1607.06450
 https://arxiv.org/abs/1609.05158
 
 -- Dynamic Filter Layer
+
 [5] Dynamic Filter Networks. 
 
 https://arxiv.org/abs/1605.09673
 
 -- Correlation Layer
+
 [6] Convolutional neural network architecture for geometric matching. 
 
 https://arxiv.org/pdf/1703.05593.pdf
