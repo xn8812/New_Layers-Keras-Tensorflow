@@ -6,6 +6,7 @@ they are tested on Keras-1.2.2.
 The layers include:
 
 -- Spatial Transformer Networks (STN).
+
 [1] Spatial Transformer Networks. 
 
 https://arxiv.org/abs/1506.02025
@@ -14,17 +15,20 @@ https://arxiv.org/abs/1506.02025
 This is based on STN, instead of predicting transformation matrices, this layer predict the x,y displacements.
 
 -- Separable RNN Layer.
+
 Seperate the RNN into two parts, convolution + recurrence.
 This layer can accept input directly from linear convolution.
 
 [2] https://openreview.net/forum?id=rJJRDvcex&noteId=rJJRDvcex
 
 -- RNN with Layer Normalization.
+
 [3] Layer Normalization. 
 
 https://arxiv.org/abs/1607.06450
 
 -- Subpixel Upsampling.
+
 [4] Real-Time Single Image and Video Super-Resolution Using an Efficient Sub-Pixel Convolutional Neural Network.
 
 https://arxiv.org/abs/1609.05158
