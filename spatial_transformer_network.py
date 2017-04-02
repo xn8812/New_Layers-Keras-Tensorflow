@@ -1,8 +1,3 @@
-"""
-Created on Tue Jan 31 10:54:21 2017
-
-@author: Weidi Xie
-"""
 from __future__ import absolute_import
 from __future__ import division
 
