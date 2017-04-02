@@ -5,15 +5,15 @@ they are tested on Keras-1.2.2.
 
 The layers include:
 
---- Spatial Transformer Networks (STN).
+# Spatial Transformer Networks (STN).
 
 [1] Spatial Transformer Networks. 
 
 https://arxiv.org/abs/1506.02025
 
---- Spatial Warping Layer. 
+# Spatial Warping Layer. 
 
-This is based on STN, instead of predicting transformation matrices, this layer predict the x,y displacements.
+This is based on the STN, instead of using transformation matrices to transform, this layer uses the x,y displacements.
 
 [1] Spatial Transformer Networks. 
 
@@ -25,32 +25,32 @@ Related works also include:
 
 https://arxiv.org/abs/1611.07715
 
---- Separable RNN Layer.
+# Separable RNN Layer.
 
 Seperate the RNN into two parts, convolution + recurrence.
 This layer can accept input directly from linear convolution.
 
 [1] https://openreview.net/forum?id=rJJRDvcex&noteId=rJJRDvcex
 
---- RNN with Layer Normalization.
+# RNN with Layer Normalization.
 
 [1] Layer Normalization. 
 
 https://arxiv.org/abs/1607.06450
 
---- Subpixel Upsampling.
+# Subpixel Upsampling.
 
 [1] Real-Time Single Image and Video Super-Resolution Using an Efficient Sub-Pixel Convolutional Neural Network.
 
 https://arxiv.org/abs/1609.05158
 
---- Dynamic Filter Layer
+# Dynamic Filter Layer
 
 [1] Dynamic Filter Networks. 
 
 https://arxiv.org/abs/1605.09673
 
---- Correlation Layer
+# Correlation Layer
 
 [1] DeepMatching: Deep Convolutional Matching.
 
