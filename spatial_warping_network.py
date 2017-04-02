@@ -31,10 +31,11 @@ from keras.layers import (
      Flatten,
      Lambda
     )
+
+
 # =============================================================================
 #                     Spatial Warping Layer
 # =============================================================================
-
 
 def warping_repeat(x, n_repeats):
     rep = tf.transpose(
