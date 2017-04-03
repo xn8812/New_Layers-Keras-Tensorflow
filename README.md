@@ -1,4 +1,4 @@
-# New_Layers-Keras-Tensorflow
+# New_Layers (Keras-Tensorflow)
 
 In this repository, I will add some layers from recent papers, 
 they are tested on Keras-1.2.2.  
