@@ -65,6 +65,7 @@ http://www.robots.ox.ac.uk/~tvg/publications/2016/FullyTrainableDeepMatching.pdf
 https://arxiv.org/pdf/1703.05593.pdf
 
 
-
+# TODO
+Speed up the im2col operations in several layers, e.g. correlation layer, dynamic filter layer, etc.
 
 
