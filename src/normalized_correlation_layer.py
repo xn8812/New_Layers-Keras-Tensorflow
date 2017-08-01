@@ -62,7 +62,7 @@ class Normalized_Correlation_Layer(Layer):
         self.dim_ordering = dim_ordering
         self.border_mode = border_mode
         self.activation = activations.get(activation)
-        super(Correlation_Layer, self).__init__(**kwargs)
+        super(Normalized_Correlation_Layer, self).__init__(**kwargs)
 
     def get_output_shape_for(self, input_shape):
         if self.dim_ordering == 'tf':
