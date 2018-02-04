@@ -138,6 +138,13 @@ def _warping(flow, conv_input):
     flow = K.reshape(flow, (-1, out_height * out_width, 2))
     flow = K.permute_dimensions(flow, (0, 2, 1))
 
+    x_s = tf.slice(flow, [0, 0, 0], [-1, 1, -1])
+    y_s = tf.slice(flow, [0, 1, 0], [-1, 1, -1])
+
+    x_s = x_s / width_f * 2.
+    y_s = y_s / height_f * 2.
+    flow = tf.concat([x_s, y_s], 1)
+
     # Transform the target grid back to the source grid, where original image lies.
     # Minus flow_field to the grid axis.
     #T_g = grid - flow / K.cast(out_height, 'float32')

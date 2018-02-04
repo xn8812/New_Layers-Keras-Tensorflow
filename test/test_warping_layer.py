@@ -67,55 +67,55 @@ def warp_flow(img, flow):
 #sess = tf_debug.LocalCLIDebugWrapperSession(sess)
 #K.set_session(sess)
 
-# height = 320
-# width = 640
-# batch_size = 1
-# image = Image.open("lena.png")
-# image = image.resize(( width, height))
-# #pdb.set_trace()
-# image = np.array(image) 
-
-# flow_ = np.zeros((batch_size, height, width, 2))
-
-# flow_[:, :, :, 0] = -180.
-# flow_[:, :, :, 1] = -180.
-# pdb.set_trace()
-# out2 = warp_flow(image, flow_[0].astype('float32'))
-
-# image = image.astype('float32')
-
-# # Make a test flow_field.
-# image = np.expand_dims(image, axis=0)
-
-
-# Image.fromarray((out2).astype('uint8')).show()
-
-# flow_[:, :, :, 0] = -180. / (width/2)
-# flow_[:, :, :, 1] = -180. / (height/2)
-
-# model = buildModel(dim=(height, width, 3))
-
-# out = model.predict([image, flow_])
-
-# Image.fromarray((image[0]).astype('uint8')).show()
-# Image.fromarray((out[0]).astype('uint8')).show()
-
-flow_path = '/mnt/ilcompf2d0/user/nxu/video_seg/tmp/flownet2/scripts'
-flow_name = 'res.flo'
-flow_ = readFlow(os.path.join(flow_path,flow_name))
-
-height, width, _ = flow_.shape
+height = 320
+width = 640
 batch_size = 1
+image = Image.open("lena.png")
+image = image.resize(( width, height))
+#pdb.set_trace()
+image = np.array(image) 
 
-im1 = Image.open(os.path.join(flow_path, '50.png'))
-im1.show()
-image = np.asarray(im1).astype('float32')
+flow_ = np.zeros((batch_size, height, width, 2))
+
+flow_[:, :, :, 0] = -180.
+flow_[:, :, :, 1] = -180.
+pdb.set_trace()
+out2 = warp_flow(image, flow_[0].astype('float32'))
+
+image = image.astype('float32')
+
+# Make a test flow_field.
 image = np.expand_dims(image, axis=0)
 
-flow_ = np.expand_dims(flow_, axis=0)
-flow_[:, :, :, 0] = flow_[:, :, :, 0] / width * 2
-flow_[:, :, :, 1] = flow_[:, :, :, 1] / height * 2
+
+Image.fromarray((out2).astype('uint8')).show()
+
+#flow_[:, :, :, 0] = -180. 
+#flow_[:, :, :, 1] = -180.
 
 model = buildModel(dim=(height, width, 3))
+
 out = model.predict([image, flow_])
+
+#Image.fromarray((image[0]).astype('uint8')).show()
 Image.fromarray((out[0]).astype('uint8')).show()
+
+# flow_path = '/mnt/ilcompf2d0/user/nxu/video_seg/tmp/flownet2/scripts'
+# flow_name = 'res.flo'
+# flow_ = readFlow(os.path.join(flow_path,flow_name))
+
+# height, width, _ = flow_.shape
+# batch_size = 1
+
+# im1 = Image.open(os.path.join(flow_path, '50.png'))
+# im1.show()
+# image = np.asarray(im1).astype('float32')
+# image = np.expand_dims(image, axis=0)
+
+# flow_ = np.expand_dims(flow_, axis=0)
+# flow_[:, :, :, 0] = flow_[:, :, :, 0] 
+# flow_[:, :, :, 1] = flow_[:, :, :, 1]
+
+# model = buildModel(dim=(height, width, 3))
+# out = model.predict([image, flow_])
+# Image.fromarray((out[0]).astype('uint8')).show()
