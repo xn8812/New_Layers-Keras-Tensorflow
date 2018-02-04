@@ -11,13 +11,10 @@ import types as python_types
 from keras import backend as K
 from keras.regularizers import l2
 from keras.layers.convolutional import Convolution2D
-from keras.engine import InputSpec, Layer, Merge
-from keras import regularizers
-from keras.utils.np_utils import conv_output_length
+#from keras.engine import InputSpec, Layer, Merge
+from keras.engine.topology import Layer
+#from keras.utils.np_utils import conv_output_length
 from keras.utils.generic_utils import func_dump, func_load
-from keras.layers.recurrent import Recurrent, time_distributed_dense
-from keras import activations, initializations, regularizers, constraints
-from keras.layers import BatchNormalization
 from keras.layers import (
      Input,
      Activation,
@@ -60,7 +57,7 @@ def warping_interpolate(im, x, y):
 
     zero = tf.zeros([], dtype='int32')
     max_y = tf.cast(tf.shape(im)[1] - 1, 'int32')
-    max_x = tf.cast(tf.shape(im)[1] - 1, 'int32')
+    max_x = tf.cast(tf.shape(im)[2] - 1, 'int32')
 
     # scale indices from [-1, 1] to [0, width or height]
     x = (x + 1.0) * (width_f) / 2.0
@@ -118,7 +115,8 @@ def warping_meshgrid(height, width):
 def _warping(flow, conv_input):
     # input : the feature maps that to be transformed.
     # in this code, I only wrote the tenforflow backend.
-    num_batch = tf.shape(conv_input)[0]
+    
+    num_batch = tf.shape(conv_input)[0]    
     height = tf.shape(conv_input)[1]
     width = tf.shape(conv_input)[2]
     num_channels = tf.shape(conv_input)[3]
@@ -126,8 +124,8 @@ def _warping(flow, conv_input):
     height_f = tf.cast(height, 'float32')
     width_f = tf.cast(width, 'float32')
 
-    out_height = tf.cast(height_f, 'int32')  # python 3.5 mode
-    out_width = tf.cast(width_f, 'int32')  # python 3.5 mode
+    out_height = tf.cast(height_f, 'int32')  # python 3.5 mode    
+    out_width = tf.cast(width_f, 'int32')  # python 3.5 mode    
 
     # Generate the Grid
     grid = warping_meshgrid(out_height, out_width)
@@ -141,8 +139,9 @@ def _warping(flow, conv_input):
     flow = K.permute_dimensions(flow, (0, 2, 1))
 
     # Transform the target grid back to the source grid, where original image lies.
-    # Add flow_field to the grid axis.
-    T_g = grid + flow / K.cast(out_height, 'float32')
+    # Minus flow_field to the grid axis.
+    #T_g = grid - flow / K.cast(out_height, 'float32')
+    T_g = grid - flow 
 
     x_s = tf.slice(T_g, [0, 0, 0], [-1, 1, -1])
     y_s = tf.slice(T_g, [0, 1, 0], [-1, 1, -1])
@@ -172,11 +171,13 @@ class SWN(Layer):
     def __init__(self, **kwargs):
         super(SWN, self).__init__(**kwargs)
 
-    def get_output_shape_for(self, input_shape):
+    #def get_output_shape_for(self, input_shape):
+    def compute_output_shape(self, input_shape):
         # input dims are bs, num_filters, height, width. 
-        rows = input_shape[0][1]
-        cols = input_shape[0][2]
-        return input_shape[0][0], rows, cols, input_shape[0][-1]
+        #rows = input_shape[0][1]
+        #cols = input_shape[0][2]
+        #return input_shape[0][0], rows, cols, input_shape[0][-1]
+        return input_shape
 
     def call(self, x, mask=None):
         conv_input, flow = x
